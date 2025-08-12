@@ -3,6 +3,7 @@ import os
 import re
 import logging
 import pandas as pd
+from datetime import datetime, timedelta
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import text
 from config import ConfigLoader
@@ -15,9 +16,18 @@ class DataParser:
        db = DatabaseConnector(config_path)
        self.engine = db.connect_sqlalchemy()
        self.folder_pattern = re.compile(r"DAT_(\d{2})(\d{2})\.(\d+)")
+       self.start_date=cfg.start_date
+       self.end_date=cfg.end_date
+       self.logger = logging.getLogger(__name__)
+       
 
     def parse_all_data(self):
         print("=== Загрузка данных ===")
+        '''if start_date is None:
+            start_date= datetime.min.date()
+        if end_date is None:
+            end_date=datetime.max.date()'''
+            
         for entry in os.listdir(self.data_dir):
             full_path = os.path.join(self.data_dir, entry)
             if not os.path.isdir(full_path):

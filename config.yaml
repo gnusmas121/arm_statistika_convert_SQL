@@ -1,0 +1,18 @@
+database:
+  server: "Server_name"
+  name: "Database_name"
+  username: "User_name_to_database"
+  password: "password_user_database"
+  encrypt: "no"
+
+paths:
+  forms_directory: "Path_to_/ФОРМЫ"
+  data_directory:  "Path_to/ДАННЫЕ"
+
+logging:
+  level: "DEBUG"
+  file: "logs/parser.log"
+  
+dates:
+  start_date: "2025-03-01"
+  end_date: "None"
